@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indian Primary And High School</title>
+<style>
+    
+/* ===== EASY EDIT OPTIONS ===== */
+:root{
+--main-color:#004aad;
+--secondary-color:#00c6ff;
+--accent-color:#ffcc00;
+--text-color:#333;
+--card-radius:15px;
+}
+
+/* ============================ */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+}
+
+body{
+background:linear-gradient(120deg,var(--secondary-color),#f0f8ff);
+color:var(--text-color);
+}
+
+/* HERO SECTION */
+
+.hero{
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("https://images.unsplash.com/photo-1580582932707-520aed937b7b");
+background-size:cover;
+background-position:center;
+color:white;
+text-align:center;
+padding:100px 20px;
+}
+
+.hero h1{
+font-size:45px;
+}
+
+.hero p{
+margin-top:10px;
+font-size:18px;
+}
+
+/* NAVIGATION */
+
+nav{
+background:var(--main-color);
+text-align:center;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 15px;
+font-weight:bold;
+padding:8px 15px;
+border-radius:20px;
+transition:.3s;
+}
+
+nav a:hover{
+background:var(--accent-color);
+color:black;
+}
+
+/* CONTAINER */
+
+.container{
+width:85%;
+margin:auto;
+padding:40px 0;
+}
+
+/* SECTION CARD */
+
+.section{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:var(--card-radius);
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+transition:.3s;
+}
+
+.facility-list li{
+padding:8px;
+list-style:none;
+border-bottom:1px solid #eee;
+transition:.3s;
+}
+
+.facility-list li:hover{
+padding-left:15px;
+color:var(--main-color);
+}
+
+.section:hover{
+transform:translateY(-6px);
+}
+
+.section h2{
+color:var(--main-color);
+margin-bottom:10px;
+}
+
+/* Section */
+.stats-section{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.stats-section h2{
+    font-size:34px;
+    margin-bottom:60px;
+}
+
+/* Container */
+.triangle{
+    position:relative;
+    max-width:650px;
+    height:380px;
+    margin:auto;
+}
+
+/* Glass Cards */
+.card{
+    position:absolute;
+    width:200px;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 8px 30px rgba(0,0,0,0.3);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 25px rgba(0,198,255,0.6);
+}
+
+/* Positions */
+.top{ top:0; left:50%; transform:translateX(-50%); }
+.left{ bottom:0; left:0; }
+.right{ bottom:0; right:0; }
+
+/* Text */
+.number{
+    font-size:32px;
+    font-weight:bold;
+    color:#00e6ff;
+}
+
+.label{
+    margin-top:8px;
+    font-size:15px;
+}
+
+/* SVG lines */
+svg{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+line{
+    stroke:url(#grad);
+    stroke-width:3;
+    stroke-dasharray:6;
+    animation:move 3s linear infinite;
+}
+
+@keyframes move{
+    to{
+        stroke-dashoffset:-20;
+    }
+}
+
+/* Animated dots */
+.dot{
+    fill:#00e6ff;
+    filter:drop-shadow(0 0 6px #00e6ff);
+}
+
+/* Counter Animation */
+.counter{
+    display:inline-block;
+}
+
+/* Mobile */
+@media(max-width:600px){
+    .triangle{
+        height:auto;
+    }
+    .card{
+        position:static;
+        margin:15px auto;
+    }
+    svg{
+        display:none;
+    }
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+transition:.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+/* FOOTER */
+
+footer{
+background:var(--main-color);
+color:white;
+text-align:center;
+padding:15px;
+margin-top:30px;
+}
+
+.school-logo{
+width:120px;
+margin-bottom:15px;
+border-radius:50%;
+border:4px solid white;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+/* Social Container */
+.social-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    padding:20px;
+    background:white;
+}
+
+/* Icon Style */
+.social-container a{
+    text-decoration:none;
+    color:white;
+    font-size:22px;
+    width:50px;
+    height:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    transition:0.3s;
+}
+
+/* Individual Colors */
+.facebook{ background:#1877f2; }
+.youtube{ background:#ff0000; }
+.twitter{ background:#1da1f2; }
+.phone{ background:#28a745; }
+.email{ background:#ff9800; }
+
+/* Hover Effect */
+.social-container a:hover{
+    transform:scale(1.2);
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Title */
+.section-title{
+    text-align:center;
+    padding:30px 10px;
+    font-size:28px;
+    color:#004aad;
+    font-weight:bold;
+}
+
+/*Staff Quotes */
+.section-Quotes{
+    text-align: center;
+    padding: 50px;
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/* Principal Section */
+.principal-section{
+    display:flex;
+    justify-content:center;
+    margin-bottom:30px;
+}
+
+.principal-card{
+    background:#fff;
+    border-radius:20px;
+    text-align:center;
+    padding:25px;
+    width:260px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.principal-card:hover{
+    transform:scale(1.05);
+}
+
+/* Principal Image */
+.principal-card img{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #004aad;
+    margin-bottom:15px;
+}
+
+/* Teachers Grid */
+.staff-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+    padding:20px;
+}
+
+/* Teacher Card */
+.staff-card{
+    background:#fff;
+    border-radius:15px;
+    text-align:center;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.staff-card:hover{
+    transform:translateY(-10px);
+}
+
+/* Images */
+.staff-card img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #004aad;
+    margin-bottom:10px;
+}
+
+/* Text */
+.staff-name{
+    font-size:18px;
+    font-weight:bold;
+    color:#333;
+}
+
+.staff-role{
+    font-size:14px;
+    color:#777;
+    margin-top:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<div class="hero">
+<img src="school_logo1.png" class="school-logo">
+
+<h1>Indian Primary And High School</h1>
+
+<p>Devarachikkanahalli, Bengaluru</p>
+</div>
+
+<!-- NAVIGATION -->
+
+<nav>
+<a href="#about">About</a>
+<a href="#facilities">Facilities</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+<a href="https://maps.app.goo.gl/VJ4jTgD3v5BDQDkcA" target="_blank" rel="noopener noreferrer">Location</a>
+<a href="#Enquire">Enquire</a>
+</nav>
+
+<div class="container">
+
+<!-- ABOUT -->
+
+<div class="section" id="about">
+<h2>About Our School</h2>
+
+<p>
+Indian Primary And High School is located in Bommanahalli,
+Bengaluru. The school provides quality education from
+pre-primary to high school level and focuses on academic
+excellence and discipline.
+</p>
+
+<section class="stats-section">
+    <h2>Our Achievements</h2>
+
+    <div class="triangle">
+
+        <!-- SVG Triangle Lines -->
+        <svg>
+            <defs>
+                <linearGradient id="grad">
+                    <stop offset="0%" stop-color="#00e6ff"/>
+                    <stop offset="100%" stop-color="#0072ff"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Lines -->
+            <line x1="50%" y1="10%" x2="10%" y2="85%"/>
+            <line x1="50%" y1="10%" x2="90%" y2="85%"/>
+            <line x1="10%" y1="85%" x2="90%" y2="85%"/>
+
+            <!-- Moving dots -->
+            <circle class="dot">
+                <animateMotion dur="4s" repeatCount="indefinite"
+                path="M 325 40 L 65 330"/>
+            </circle>
+
+            <circle class="dot">
+                <animateMotion dur="4s" repeatCount="indefinite"
+                path="M 325 40 L 585 330"/>
+            </circle>
+
+            <circle class="dot">
+                <animateMotion dur="4s" repeatCount="indefinite"
+                path="M 65 330 L 585 330"/>
+            </circle>
+
+        </svg>
+
+        <!-- Top -->
+        <div class="card top">
+            <div class="number counter" data-target="1000">0</div>+
+            <div class="label">Students</div>
+        </div>
+
+        <!-- Left -->
+        <div class="card left">
+            <div class="number counter" data-target="22">0</div>+
+            <div class="label">Teachers</div>
+        </div>
+
+        <!-- Right -->
+        <div class="card right">
+            <div class="number">2010</div>
+            <div class="label">Established</div>
+        </div>
+
+    </div>
+    </section>
+
+</div>
+
+<!-- FACILITIES -->
+
+<div class="section" id="facilities">
+
+<h2>School Facilities</h2>
+
+<ul class="facility-list">
+<li>💻 Digital Classrooms</li>
+<li>🖥 Computer Lab</li>
+<li>📚 Library</li>
+<li>⚽ Sports Ground</li>
+<li>💧 Drinking Water Facility</li>
+<li>🚻 Separate Toilets</li>
+</ul>
+
+</div>
+
+<!-- GALLERY -->
+
+<div class="section" id="gallery">
+
+<h2>School Gallery</h2>
+<div class="section" id="youtube">
+
+<h2></h2>
+
+<p>Watch our school activities, programs, and student achievements on our YouTube channel.</p>
+<div style="text-align:center;margin-top:15px;">
+<a href="https://youtube.com/@indianprimaryandhighschool8581" target="_blank"
+style="background:red;color:white;padding:10px 20px;border-radius:25px;text-decoration:none;font-weight:bold;">
+▶ Visit Our YouTube Channel
+</a>
+</div>
+
+</div>
+
+<div class="gallery">
+
+<img src="school1.jpg.png">
+
+<img src="School2.jpg.png">
+
+<img src="school3.jpg.png">
+
+<img src="school4.jpg.jpg">
+
+</div>
+
+</div>
+
+
+<!-- CONTACT -->
+
+
+
+<div class="section" id="contact">
+
+<h2>Contact</h2>
+
+<p>
+📍 Devarachikkanahalli Begur Rd,<br>
+C Thimma Reddy Layout, Stage 4,<br>
+Bommanahalli, Bengaluru, Karnataka
+</p>
+
+<p>📞 +91 9844182385</p>
+
+<p>📧 info@school.edu</p>
+<br>
+<hr>
+<br>
+
+<div class="section">
+
+<h2>Admissions Open</h2>
+
+<p>
+Admissions are now open for the academic year 2026–2027.
+Parents are welcome to visit the school campus for more
+information about the admission process.
+</p>
+
+<p><b>Classes:</b> Pre-Primary to High School</p>
+
+<p><b>Contact:</b> +91 9844182385</p>
+
+</div>
+</div>
+</div>
+
+<div class="section-Quotes">
+    <div style="text-align:center;margin-top:15px;">
+        Our school is led by a visionary Principal and supported by a team of dedicated teachers who are committed to providing quality education.
+        <br>Together, they create a nurturing and inspiring environment where students can learn, grow, and achieve their full potential.
+    </div>
+</div>
+
+<div class="section-title">Our Staff</div>
+
+<!-- Principal (Top Center) -->
+<div class="principal-section">
+    <div class="principal-card">
+        <img src="https://via.placeholder.com/150" alt="Principal">
+        <div class="staff-name">Mr. John Doe</div>
+        <div class="staff-role">Principal</div>
+    </div>
+</div>
+
+<!-- Teachers -->
+<div class="staff-container">
+
+    <div class="staff-card">
+        <img src="https://via.placeholder.com/150">
+        <div class="staff-name">Mrs. Anitha</div>
+        <div class="staff-role">Mathematics Teacher</div>
+    </div>
+
+    <div class="staff-card">
+        <img src="https://via.placeholder.com/150">
+        <div class="staff-name">Mr. Ravi Kumar</div>
+        <div class="staff-role">Science Teacher</div>
+    </div>
+
+    <div class="staff-card">
+        <img src="https://via.placeholder.com/150">
+        <div class="staff-name">Ms. Priya</div>
+        <div class="staff-role">English Teacher</div>
+    </div>
+
+    <div class="staff-card">
+        <img src="https://via.placeholder.com/150">
+        <div class="staff-name">Mr. Suresh</div>
+        <div class="staff-role">Social Teacher</div>
+    </div>
+
+</div>
+
+<div class="social-container" id="Enquire">
+    <!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <a href="https://facebook.com" target="_blank" class="facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://youtube.com" target="_blank" class="youtube">
+        <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://twitter.com" target="_blank" class="twitter">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+    <a href="tel:+919999999999" class="phone">
+        <i class="fas fa-phone"></i>
+    </a>
+
+    <a href="mailto:example@email.com" class="email">
+        <i class="fas fa-envelope"></i>
+    </a>
+
+</div>
+
+<footer>
+
+<p>© 2026 Indian Primary And High School</p>
+
+</footer>
+
+<script>
+// Counter Animation
+const counters = document.querySelectorAll(".counter");
+
+counters.forEach(counter => {
+    let target = +counter.getAttribute("data-target");
+    let count = 0;
+
+    let update = () => {
+        let speed = target / 100;
+        count += speed;
+
+        if(count < target){
+            counter.innerText = Math.floor(count);
+            requestAnimationFrame(update);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    update();
+});
+</script>
+
+</body>
+</html>
