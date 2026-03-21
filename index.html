@@ -31,22 +31,29 @@ color:var(--text-color);
 
 /* HERO SECTION */
 
+.hero_1{
+    margin-top: -90px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
 .hero{
-background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-url("https://images.unsplash.com/photo-1580582932707-520aed937b7b");
-background-size:cover;
+background:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.9)),url("school_main1.png");
+background-size: 1570px;
 background-position:center;
 color:white;
-text-align:center;
-padding:100px 20px;
+text-align: center;
+padding: 90px;
 }
 
 .hero h1{
-font-size:45px;
+margin-top: 600px;
+margin-bottom: -50px;
+font-size:50px;
 }
 
 .hero p{
-margin-top:10px;
+margin-top: 50px;
 font-size:18px;
 }
 
@@ -385,6 +392,28 @@ scroll-behavior:smooth;
     margin-top:5px;
 }
 
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  color: #fff;
+  text-align: center;
+  animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.5; text-shadow: 0 0 5px #fff; }
+  100% { opacity: 1; text-shadow: 0 0 20px #00c6ff, 0 0 40px #00c6ff; }
+}
+
 </style>
 
 </head>
@@ -393,12 +422,16 @@ scroll-behavior:smooth;
 
 <!-- HERO -->
 
+<div class="hero_1">
 <div class="hero">
-<img src="school_logo1.png" class="school-logo">
 
+<div class="fade-in">
 <h1>Indian Primary And High School</h1>
-
+</div>
+<div class="slide-up">
 <p>Devarachikkanahalli, Bengaluru</p>
+</div>
+</div>
 </div>
 
 <!-- NAVIGATION -->
@@ -526,7 +559,7 @@ style="background:red;color:white;padding:10px 20px;border-radius:25px;text-deco
 
 <img src="school1.jpg.png">
 
-<img src="school2.jpg.png">
+<img src="School2.jpg.png">
 
 <img src="school3.jpg.png">
 
