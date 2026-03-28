@@ -157,7 +157,7 @@ footer {
 <nav>
   <h2>Indian Primary & High School</h2>
   <div>
-    <a href="index.html">Home</a>
+    <a onclick="goHome()">Home</a>
     <a href="#">About</a>
     <a href="#">Admissions</a>
     <a href="#">Contact</a>
@@ -269,6 +269,12 @@ Message: ${msg}`;
   let url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(finalMessage);
 
   window.open(url, "_blank");
+}
+</script>
+
+  <script>
+function goHome() {
+    window.location.href = "index.html"; // change to your homepage file
 }
 </script>
 
