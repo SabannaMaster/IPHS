@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="school_logo1.png">
 <link rel="icon" type="image/png" sizes="16x16" href="school_logo1.png">
 <link rel="apple-touch-icon" href="school_logo1.png">
-<link rel="manifest" href="school_logo1.png">
+<link rel="manifest" href="site.webmanifest">
 <style>
     
     
@@ -37,10 +37,20 @@ overflow-x: hidden; /* Prevents side-scrolling on mobile */
 
 /* HERO SECTION */
 
-.hero_1{
+.hero_1 {
     margin-top: 0; /* Adjusted for better spacing */
     margin-bottom: 5px;
     text-align: center;
+}
+
+/* New code for mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .hero_1 img {
+        max-width: 80%; /* Prevents the logo from being too large on small screens */
+        height: auto;    /* Maintains the original aspect ratio */
+        display: block;
+        margin: 0 auto;  /* Keeps it centered */
+    }
 }
 
 .hero{
