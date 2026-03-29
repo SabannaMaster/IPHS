@@ -5,6 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Indian Primary And High School</title>
 <style>
+
+    /* ===== CENTER LOGO ANIMATION ===== */
+.hero-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    z-index: 2;
+    opacity: 0;
+    animation: logoEntry 2s ease-out forwards;
+}
+
+.hero-logo img {
+    width: 130px; /* Medium size */
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
+}
+
+/* Animation */
+@keyframes logoEntry {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -60%) scale(0.4);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+    
     
 /* ===== EASY EDIT OPTIONS ===== */
 :root{
@@ -408,8 +438,12 @@ scroll-behavior:smooth;
 
 <body>
 
+
 <div class="hero_1">
     <div class="hero">
+        <div class="hero-logo">
+    <img src="school_logo1.png" alt="School Logo">
+</div>
         <div class="fade-in">
             <h1>Indian Primary And High School</h1>
         </div>
