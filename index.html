@@ -515,7 +515,7 @@ animation:spin 1s linear infinite;
 
 <body>
   
-  <div id="loader">
+<div id="loader">
     <div class="spinner"></div>
 </div>
 
@@ -691,23 +691,21 @@ counters.forEach(counter => {
     update();
 });
 
-
 const revealElements = document.querySelectorAll(".section, .staff-card, .principal-card");
-
 const revealOnScroll = () => {
     const triggerBottom = window.innerHeight * 0.85;
-
     revealElements.forEach(el => {
         const boxTop = el.getBoundingClientRect().top;
-
         if(boxTop < triggerBottom){
             el.style.opacity = "1";
             el.style.transform = "translateY(0)";
         }
     });
 };
-
 window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("scroll", revealOnScroll);
+
+
 window.addEventListener("load", ()=>{
 document.getElementById("loader").style.display="none";
 });
