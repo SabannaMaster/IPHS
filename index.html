@@ -67,6 +67,10 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 }
+@keyframes zoomBg{
+0%{background-size:100%;}
+100%{background-size:110%;}
+}
 @media(max-width:600px){
 .hero{
 min-height:50vh; /* smaller on mobile */
@@ -704,8 +708,6 @@ const revealOnScroll = () => {
 };
 
 window.addEventListener("scroll", revealOnScroll);
-
-
 window.addEventListener("load", ()=>{
 document.getElementById("loader").style.display="none";
 });
