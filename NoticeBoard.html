@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>School Notice Board</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #eef2f7;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(45deg, #2980b9, #6dd5fa);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* MARQUEE */
+.marquee {
+    background: #f39c12;
+    color: white;
+    padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll 15s linear infinite;
+}
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+/* FILTER BUTTONS */
+.filters {
+    text-align: center;
+    margin: 15px;
+}
+
+.filters button {
+    padding: 8px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: #ddd;
+}
+
+.filters button.active {
+    background: #2980b9;
+    color: white;
+}
+
+/* BOARD */
+.board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    width: 90%;
+    margin: auto;
+}
+
+/* CARD */
+.card {
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    position: relative;
+}
+
+.announcement { background: #3498db; }
+.holiday { background: #27ae60; }
+.event { background: #e74c3c; }
+
+.date {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.today {
+    border: 3px solid yellow;
+}
+
+.tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 10px;
+    background: black;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>🏫 School Notice Board</h2>
+</header>
+
+<div class="marquee">
+    <span id="scrollText"></span>
+</div>
+
+<div class="filters">
+    <button onclick="filterItems('all')" class="active">All</button>
+    <button onclick="filterItems('announcement')">Announcements</button>
+    <button onclick="filterItems('holiday')">Holidays</button>
+    <button onclick="filterItems('event')">Events</button>
+</div>
+
+<div class="board" id="board"></div>
+
+<script>
+
+// DATA
+const notices = [
+    { type: "announcement", text: "Annual Day Function", date: "2026-04-05" },
+    { type: "holiday", text: "Ambedkar Jayanti Holiday", date: "2026-04-14" },
+    { type: "event", text: "Sports Day आयोजन", date: "2026-04-03" },
+    { type: "announcement", text: "Exam Schedule Released", date: "2026-04-01" },
+    { type: "event", text: "Science Exhibition", date: "2026-04-20" }
+];
+
+// TODAY DATE
+const today = new Date().toISOString().split("T")[0];
+
+// RENDER
+function render(filter = "all") {
+    const board = document.getElementById("board");
+    board.innerHTML = "";
+
+    notices
+    .filter(n => filter === "all" || n.type === filter)
+    .sort((a,b) => new Date(b.date) - new Date(a.date))
+    .forEach(n => {
+
+        const div = document.createElement("div");
+        div.className = `card ${n.type}`;
+
+        if (n.date === today) {
+            div.classList.add("today");
+        }
+
+        div.innerHTML = `
+            <div class="tag">${n.type.toUpperCase()}</div>
+            <h3>${n.text}</h3>
+            <div class="date">📅 ${n.date}</div>
+        `;
+
+        board.appendChild(div);
+    });
+}
+
+// FILTER BUTTON
+function filterItems(type) {
+    document.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+    event.target.classList.add("active");
+    render(type);
+}
+
+// SCROLL TEXT
+document.getElementById("scrollText").innerText =
+    notices.map(n => n.text + " (" + n.date + ")").join("  |  ");
+
+// INIT
+render();
+
+</script>
+
+</body>
+</html>
