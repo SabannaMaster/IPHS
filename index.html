@@ -57,19 +57,17 @@ overflow-x: hidden; /* Prevents side-scrolling on mobile */
 .hero{
 background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8)),
 url("intro main img.jpg");
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
+background-size:cover;          /* VERY IMPORTANT */
+background-position:center;     /* CENTER image */
+background-repeat:no-repeat;    /* PREVENT multiple images */
 color:white;
 text-align:center;
-padding:60px 20px;
-min-height:100vh;
+padding:40px 15px;
+min-height:60vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
-animation:zoomBg 20s infinite alternate;
 }
-
 @keyframes zoomBg{
 0%{background-size:100%;}
 100%{background-size:110%;}
