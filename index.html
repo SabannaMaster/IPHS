@@ -57,22 +57,36 @@ overflow-x: hidden; /* Prevents side-scrolling on mobile */
 .hero{
 background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8)),
 url("intro main img.jpg");
-background-size:cover;          /* VERY IMPORTANT */
-background-position:center;     /* CENTER image */
-background-repeat:no-repeat;    /* PREVENT multiple images */
+background-size:cover;
+background-position:center;
 color:white;
 text-align:center;
 padding:40px 15px;
-min-height:60vh;
+min-height:60vh; /* reduced height */
 display:flex;
 flex-direction:column;
 justify-content:center;
 }
-@keyframes zoomBg{
-0%{background-size:100%;}
-100%{background-size:110%;}
+@media(max-width:600px){
+.hero{
+min-height:50vh; /* smaller on mobile */
+padding:30px 10px;
 }
 
+.hero h1{
+font-size:22px;
+}
+
+.hero p{
+font-size:14px;
+}
+}
+@media(max-width:600px){
+.logo{
+width:70px;
+}
+}
+    
 .hero h1{
 margin-top: 20px;
 margin-bottom: 10px;
