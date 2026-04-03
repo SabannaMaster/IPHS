@@ -378,16 +378,16 @@ z-index:999;
 .social-container a{
 width:45px;
 height:45px;
+font-size:18px;
 display:flex;
 justify-content:center;
 align-items:center;
 border-radius:50%;
 color:white;
-font-size:18px;
 box-shadow:0 5px 15px rgba(0,0,0,0.3);
 transition:0.3s;
 }
-
+    
 .social-container a:hover{
 transform:scale(1.15);
 }
@@ -397,6 +397,20 @@ transform:scale(1.15);
 .twitter{ background:#1da1f2; }
 .phone{ background:#28a745; }
 .email{ background:#ff9800; }
+
+    @media(max-width:600px){
+.social-container{
+right:10px;
+bottom:15px;
+gap:10px;
+}
+
+.social-container a{
+width:35px;   /* smaller */
+height:35px;
+font-size:14px;
+}
+}
 
 /* Staff Quotes */
 .section-Quotes{
