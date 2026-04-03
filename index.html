@@ -16,6 +16,28 @@ opacity:0;
 transform:translateY(40px);
 transition:0.6s ease;
 }
+
+    .logo{
+width:120px;
+height:auto;
+display:block;
+margin:0 auto 10px;
+}
+
+/* Tablet */
+@media(max-width:768px){
+.logo{
+width:80px;
+}
+}
+
+/* Mobile (strict control) */
+@media(max-width:480px){
+.logo{
+width:60px !important; /* force small */
+max-width:60px;
+}
+}
     
     
 /* ===== EASY EDIT OPTIONS ===== */
@@ -61,26 +83,52 @@ overflow-x: hidden; /* Prevents side-scrolling on mobile */
 }
 
 .hero{
+position:relative;
+overflow:hidden;
+color:white;
+text-align:center;
+padding:40px 15px;
+min-height:60vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+/* Background layer */
+.hero::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
 background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8)),
 url("intro main img.jpg");
 background-size:cover;
 background-position:center;
-background-attachment:fixed;
-color:white;
-text-align:center;
-padding:60px 20px;
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-animation:zoomBg 20s infinite alternate;
+background-repeat:no-repeat;
+z-index:-1;
+
+/* IMPORTANT: reduced zoom */
+animation:zoomHero 20s ease-in-out infinite alternate;
 }
 
-@keyframes zoomBg{
-0%{background-size:100%;}
-100%{background-size:110%;}
+@keyframes zoomHero{
+0%{
+transform:scale(1);
+}
+100%{
+transform:scale(1.05); /* SMALL zoom only */
+}
 }
 
+    @media(max-width:600px){
+.hero::before{
+animation:none;  /* 🔴 STOP animation on mobile */
+background-position:center top;
+}
+}
+    
 .hero h1{
 margin-top: 20px;
 margin-bottom: 10px;
@@ -545,18 +593,16 @@ padding:6px 12px;
     <div class="spinner"></div>
 </div>
 
-<div class="hero_1">
-    <div class="hero">
-        <div class="fade-in">
-            <div class="hero_1"><img src="1000268599-removebg-preview.png" alt="School Logo"></div>
-            <h1>Indian Primary And High School</h1>
-        </div>
-        <div class="slide-up">
-            <p>Devarachikkanahalli, Bengaluru</p>
-        </div>
+<div class="hero">
+    <div class="fade-in">
+        <img src="1000268599-removebg-preview.png" alt="School Logo" class="logo">
+        <h1>Indian Primary And High School</h1>
+    </div>
+
+    <div class="slide-up">
+        <p>Devarachikkanahalli, Bengaluru</p>
     </div>
 </div>
-
 <nav>
     <a href="#about">🏫 About</a>
 <a href="#facilities">🏢 Facilities</a>
