@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate School Hub</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #f43f5e;
+            --bg: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+            color: white;
+            min-height: 200vh; /* Extra height to test scroll animations */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #818cf8, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* The Magic Container */
+        .hub-wrapper {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -100px;
+        }
+
+        /* The Master Toggle Button */
+        .master-btn {
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 4px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .master-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: var(--accent);
+        }
+
+        /* The Animated Icons */
+        .nav-icon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(0); /* Start inside the master button */
+        }
+
+        .nav-icon span {
+            font-size: 0.7rem;
+            margin-top: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Active State: When the Master Button is clicked */
+        .hub-wrapper.active .nav-icon {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        /* Positioning the icons around the center when active */
+        .hub-wrapper.active .icon-1 { transform: translate(-150px, -120px); transition-delay: 0.1s; }
+        .hub-wrapper.active .icon-2 { transform: translate(0px, -180px); transition-delay: 0.2s; }
+        .hub-wrapper.active .icon-3 { transform: translate(150px, -120px); transition-delay: 0.3s; }
+        .hub-wrapper.active .icon-4 { transform: translate(-150px, 120px); transition-delay: 0.4s; }
+        .hub-wrapper.active .icon-5 { transform: translate(0px, 180px); transition-delay: 0.5s; }
+        .hub-wrapper.active .icon-6 { transform: translate(150px, 120px); transition-delay: 0.6s; }
+
+        .nav-icon:hover {
+            background: white;
+            color: var(--bg);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section" data-aos="fade-up">
+        <h1>St. Edwards Hub</h1>
+        <p>Scroll down and click the core to expand your world.</p>
+        <div class="scroll-hint"><i class="fas fa-chevron-down"></i></div>
+    </div>
+
+    <div class="hub-wrapper" id="hubContainer" data-aos="zoom-in" data-aos-duration="1000">
+        
+        <div class="master-btn" onclick="toggleHub()">
+            <i class="fas fa-plus" id="masterIcon"></i>
+        </div>
+
+        <a href="#1" class="nav-icon icon-1"><i class="fas fa-graduation-cap"></i><span>Grades</span></a>
+        <a href="#2" class="nav-icon icon-2"><i class="fas fa-book"></i><span>Library</span></a>
+        <a href="#3" class="nav-icon icon-3"><i class="fas fa-bus"></i><span>Transport</span></a>
+        <a href="#4" class="nav-icon icon-4"><i class="fas fa-flask"></i><span>Science</span></a>
+        <a href="#5" class="nav-icon icon-5"><i class="fas fa-calendar-alt"></i><span>Events</span></a>
+        <a href="#6" class="nav-icon icon-6"><i class="fas fa-comments"></i><span>Forum</span></a>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Scroll Animations
+        AOS.init();
+
+        // Toggle Function for the Hub
+        function toggleHub() {
+            const wrapper = document.getElementById('hubContainer');
+            const icon = document.getElementById('masterIcon');
+            
+            wrapper.classList.toggle('active');
+            
+            // Switch icon from plus to minus
+            if(wrapper.classList.contains('active')) {
+                icon.classList.replace('fa-plus', 'fa-minus');
+            } else {
+                icon.classList.replace('fa-minus', 'fa-plus');
+            }
+        }
+    </script>
+</body>
+</html>
