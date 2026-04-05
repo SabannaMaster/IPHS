@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPHS New Academy | 2026 Admissions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #6366f1;
+            --premium-gold: #fbbf24;
+            --yt-red: #ff0000;
+            --glass: rgba(255, 255, 255, 0.8);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; }
+
+        body { 
+            background: #f0f2f5; 
+            color: #1f2937; 
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 20%),
+                              radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 20%);
+        }
+
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+
+        /* Header Styling */
+        .hero { text-align: center; padding: 40px 10px; position: relative; }
+        .hero h1 { font-size: 1.8rem; letter-spacing: -1px; background: linear-gradient(to right, #4f46e5, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .badge { background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; }
+
+        /* Fees Card */
+        .glass-card { 
+            background: var(--glass); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+
+        .fee-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #e5e7eb; }
+        .fee-row:last-child { border: none; }
+        .class-name { font-weight: 700; color: #4b5563; }
+        .subjects { font-size: 0.75rem; color: #6b7280; display: block; }
+        .price { color: var(--accent); font-weight: 800; font-size: 1.1rem; }
+
+        /* Admission Steps */
+        .step-container { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
+        .step-box { 
+            min-width: 140px; background: white; padding: 15px; border-radius: 15px; 
+            border: 2px solid transparent; transition: 0.3s;
+        }
+        .step-box:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .step-num { width: 25px; height: 25px; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; margin-bottom: 10px; }
+
+        /* Premium Image/Button Area */
+        .premium-banner {
+            position: relative; height: 160px; border-radius: 20px; overflow: hidden;
+            cursor: pointer; transition: 0.5s; box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
+        }
+        .premium-banner img { width: 100%; height: 100%; object-fit: cover; }
+        .premium-overlay { 
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; color: white;
+        }
+
+        /* Animated Facilities List */
+        .facilities-hidden { display: none; margin-top: 20px; }
+        .fac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .fac-item { 
+            background: white; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 10px;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0;
+        }
+        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .fac-item i { width: 35px; height: 35px; background: #eef2ff; color: var(--accent); display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+
+        /* Floating Animation for icons */
+        .float-anim { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+        /* YouTube Section */
+        .yt-section { text-align: center; margin-top: 40px; padding: 30px; background: #0f172a; border-radius: 30px; }
+        .yt-btn { 
+            display: inline-flex; align-items: center; gap: 10px; background: var(--yt-red); 
+            color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold;
+            transition: 0.4s; position: relative;
+        }
+        .yt-btn:hover { 
+            box-shadow: 0 0 25px var(--yt-red); transform: scale(1.05);
+        }
+
+        /* Responsive Desktop */
+        @media (min-width: 768px) {
+            .container { max-width: 900px; }
+            .fac-grid { grid-template-columns: repeat(4, 1fr); }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="hero">
+        <span class="badge">SESSION 2026 - 27</span>
+        <h1>Indian Primary And High School</h1>
+        <p>Innovation in Education, Excellence in Life.</p>
+    </header>
+
+    <div class="glass-card">
+        <h3 style="margin-bottom: 15px; font-size: 1rem; color: var(--accent);">Fee Structure & Curriculum</h3>
+        <div class="fee-row">
+            <div>
+                <span class="class-name">Primary (1st-5th)</span>
+                <span class="subjects">Maths, Languages, Creative Arts, Science</span>
+            </div>
+            <div class="price">₹2,500/mo</div>
+        </div>
+        <div class="fee-row">
+            <div>
+                <span class="class-name">Middle (6th-8th)</span>
+                <span class="subjects">Science, Languages, Maths, etc</span>
+            </div>
+            <div class="price">₹3,000/mo</div>
+        </div>
+        <div class="fee-row">
+            <div>
+                <span class="class-name">Senior (9th-10th)</span>
+                <span class="subjects">Advanced Science, Maths, Social Science</span>
+            </div>
+            <div class="price">₹3,500/mo</div>
+        </div>
+    </div>
+
+    <h3 style="margin: 0 0 15px 5px; font-size: 1rem;">The Journey to Success</h3>
+    <div class="step-container">
+        <div class="step-box">
+            <div class="step-num">1</div>
+            <p style="font-size: 0.85rem; font-weight: bold;">Apply Online</p>
+            <p style="font-size: 0.7rem; color: #666;">Easy 2-min form</p>
+        </div>
+        <div class="step-box">
+            <div class="step-num">2</div>
+            <p style="font-size: 0.85rem; font-weight: bold;">Campus Tour</p>
+            <p style="font-size: 0.7rem; color: #666;">Visit our world</p>
+        </div>
+        <div class="step-box">
+            <div class="step-num" style="background: var(--premium-gold);">3</div>
+            <p style="font-size: 0.85rem; font-weight: bold;">Get Selected</p>
+            <p style="font-size: 0.7rem; color: #666;">Welcome home!</p>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="premium-banner" onclick="revealFacilities()">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="School Lab">
+        <div class="premium-overlay">
+            <span style="font-size: 0.7rem; color: var(--premium-gold); font-weight: bold;">STUDENTS CAMPUS</span>
+            <h2 id="premiumText">TAP TO VIEW MORE</h2>
+        </div>
+    </div>
+
+    <div id="facilities" class="facilities-hidden">
+        <div class="fac-grid">
+            <div class="fac-item" style="animation-delay: 0.1s;"><i class="fas fa-microchip float-anim"></i> <span style="font-size: 0.8rem; font-weight: bold;">AI Science Lab</span></div>
+            <div class="fac-item" style="animation-delay: 0.2s;"><i class="fas fa-swimmer float-anim"></i> <span style="font-size: 0.8rem; font-weight: bold;">Physical Activities</span></div>
+            <div class="fac-item" style="animation-delay: 0.3s;"><i class="fas fa-bus-alt float-anim"></i> <span style="font-size: 0.8rem; font-weight: bold;">Smart Fleet</span></div>
+            <div class="fac-item" style="animation-delay: 0.4s;"><i class="fas fa-vr-cardboard float-anim"></i> <span style="font-size: 0.8rem; font-weight: bold;">Computer Classes</span></div>
+        </div>
+    </div>
+
+    <div class="yt-section">
+        <p style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 20px;">Experience The IPHS Academy</p>
+        <a href="#" class="yt-btn">
+            <i class="fab fa-youtube"></i> OUR YOUTUBE CHANNEL
+        </a>
+    </div>
+</div>
+
+<script>
+    function revealFacilities() {
+        const facs = document.getElementById('facilities');
+        const banner = document.querySelector('.premium-banner');
+        const text = document.getElementById('premiumText');
+
+        if (facs.style.display === "block") {
+            facs.style.display = "none";
+            text.innerText = "TAP TO UNLOCK PREMIUM";
+        } else {
+            facs.style.display = "block";
+            text.innerText = "PREMIUM FACILITIES REVEALED";
+            facs.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+</script>
+
+</body>
+</html>
