@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPHS Bangalore | Admissions 2026-27</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CORE STYLES --- */
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        
+        body { 
+            background: #ffffff; /* Clean White Background */
+            color: #1e293b; 
+            overflow-x: hidden; 
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 10%;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav h2 { color: #1d4ed8; font-weight: 700; font-size: 20px; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            min-height: 85vh;
+            padding: 40px 10%;
+            gap: 60px;
+        }
+
+        /* UNIQUE PARTICLE BACKGROUND (Above Text) */
+        .unique-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .unique-bg span {
+            position: absolute;
+            border-radius: 50%;
+            background: #1d4ed8;
+            opacity: 0.1;
+            filter: blur(5px);
+            animation: driftParticle 15s infinite linear;
+        }
+        @keyframes driftParticle {
+            0% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(100px, 100px) scale(1.3); }
+            100% { transform: translate(-50px, -50px) scale(1); }
+        }
+
+        /* --- LEFT CONTENT --- */
+        .hero-text { flex: 1; min-width: 320px; z-index: 2; position: relative;}
+
+        /* Blue Animation Box */
+        .anim-box {
+            width: 70px;
+            height: 70px;
+            background: #1d4ed8; /* Solid Blue Box */
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(29, 78, 216, 0.2);
+        }
+        .anim-box::before { content: "📄"; font-size: 30px; }
+        .anim-box::after {
+            content: "✍️";
+            position: absolute;
+            font-size: 26px;
+            top: -5px;
+            right: -10px;
+            animation: uniqueWriting 2.5s infinite linear;
+        }
+
+        /* Unique Writing Animation - Follows a signature path */
+        @keyframes uniqueWriting {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            15% { transform: translate(-10px, 10px) rotate(-15deg); }
+            30% { transform: translate(-5px, 20px) rotate(10deg); }
+            45% { transform: translate(-20px, 15px) rotate(-5deg); }
+            60% { transform: translate(-10px, 10px) rotate(10deg); }
+            80% { transform: translate(-5px, 5px) rotate(-15deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .hero-text h1 { 
+            font-size: clamp(28px, 5vw, 48px); 
+            color: #1d4ed8; 
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        .hero-text p { margin: 20px 0; font-size: 17px; color: #64748b; line-height: 1.6; }
+        
+        .location { 
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 14px;
+        }
+
+        /* --- RIGHT CONTENT (BLUE FORM BOX with Unique Animation) --- */
+        .hero-form {
+            flex: 1;
+            max-width: 420px;
+            position: relative;
+            background: #1d4ed8; /* Fallback Color */
+            padding: 40px;
+            border-radius: 24px;
+            color: #ffffff;
+            box-shadow: 0 25px 50px -12px rgba(29, 78, 216, 0.4);
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        /* The Unique Morphing Background Effect */
+        .hero-form::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: uniqueMorph 8s infinite linear;
+            z-index: -1;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+        }
+
+        @keyframes uniqueMorph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg); }
+            33% { border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%; transform: rotate(90deg); }
+            66% { border-radius: 70% 30% 50% 50% / 70% 50% 50% 30%; transform: rotate(180deg); }
+        }
+
+        .hero-form h3 { margin-bottom: 25px; font-size: 24px; text-align: center; font-weight: 600; }
+        
+        .hero-form input, .hero-form select, .hero-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.08); /* Subtle white overlay */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            font-size: 15px;
+            color: #ffffff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .hero-form input:focus { border-color: rgba(255, 255, 255, 0.4); }
+
+        /* To make placeholder text visible on blue background */
+        ::placeholder { color: rgba(255, 255, 255, 0.6); }
+        
+        .hero-form select option { background: #1d4ed8; color: white; }
+
+        .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: #ffffff; /* White button for contrast */
+    color: #1d4ed8;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;         /* Added to align icon and text */
+    align-items: center;   /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    gap: 10px;            /* Space between icon and text */
+    position: relative;
+    overflow: hidden;
+}
+
+/* The Small Animated WhatsApp Icon */
+.submit-btn::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='%2325D366'%3E%3Cpath d='M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.48s3.481 5.229 3.481 8.406c0 6.555-5.333 11.887-11.889 11.887-2.007 0-3.974-.506-5.717-1.465l-6.266 1.691zm5.946-3.145c1.554.921 3.255 1.408 4.988 1.408 5.457 0 9.899-4.442 9.899-9.899 0-2.645-1.03-5.132-2.901-7.003s-4.358-2.901-7.002-2.901c-5.456 0-9.898 4.442-9.898 9.899 0 1.834.508 3.62 1.471 5.176l-1.012 3.693 3.791-1.023zm11.367-7.427c-.079-.131-.288-.211-.606-.371-.317-.159-1.873-.925-2.163-1.03-.29-.105-.502-.159-.712.159-.211.317-.818 1.031-.1 .106.131-.211.317-.37.159-.159.318-.476.318-.555 0-.079-.04-.158-.119-.238-.079-.08-1.291-3.113-1.769-4.26-.467-1.117-.941-.965-1.291-.965-.333 0-.714-.04-.967-.04s-.661.092-1.005.462c-.343.37-1.311 1.282-1.311 3.13 0 1.848 1.347 3.633 1.532 3.884.185.251 2.651 4.049 6.423 5.679.897.387 1.597.618 2.144.792.901.286 1.72.246 2.368.15.722-.108 1.873-.766 2.138-1.465.264-.699.264-1.296.185-1.427z'/%3E%3C/svg%3E");
+    display: block;
+    width: 20px;
+    height: 20px;
+    animation: iconPulse 2s infinite ease-in-out;
+}
+
+/* Small heartbeat animation */
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.submit-btn:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .hero { text-align: center; padding: 40px 20px; gap: 40px; }
+            .unique-bg span { display: none; } /* Hide particles on mobile for better performance */
+            .anim-box { margin: 0 auto 20px; }
+            .hero-form { width: 100%; padding: 30px; }
+            .hero-form::before { width: 150%; height: 150%; top: -25%; left: -25%; } /* Scale morph on mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>IPHS BANGALORE</h2>
+        <div style="font-size: 14px; color: #64748b;">Admissions 2026-27</div>
+    </nav>
+
+    <section class="hero">
+        <div class="unique-bg">
+            <span style="width:10px; height:10px; top:10%; left:5%; animation-delay:1s;"></span>
+            <span style="width:20px; height:20px; top:20%; right:10%; animation-delay:4s;"></span>
+            <span style="width:15px; height:15px; bottom:15%; left:15%; animation-delay:7s;"></span>
+        </div>
+        
+        <div class="hero-text">
+            <div class="anim-box"></div>
+            <h1>Admissions Open<br>Academic Year 2026</h1>
+            <p>Join a community dedicated to excellence. We nurture young minds for a brighter, more successful future.</p>
+            <div class="location">📍 Devarachikkanahalli, Bangalore</div>
+        </div>
+
+        <div class="hero-form">
+            <form id="waForm">
+                <h3>Quick Enquiry</h3>
+                
+                <input type="text" id="name" placeholder="Student's Name" required>
+                <input type="tel" id="phone" placeholder="Parent's Mobile Number" required>
+                
+                <select id="grade" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Pre-KG to UKG">Pre-KG to UKG</option>
+                    <option value="1st to 10th Std">1st to 10th Std</option>
+                    <option value="">Others</option>
+                </select>
+
+                <textarea id="note" rows="2" placeholder="Any questions?"></textarea>
+
+                <button type="submit" class="submit-btn">
+                    Submit via WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer style="text-align:center; padding:30px; background:#f8fafc; color:#94a3b8; font-size:13px;">
+        © 2026 Indian Primary and High School. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById('waForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const n = document.getElementById('name').value;
+            const p = document.getElementById('phone').value;
+            const g = document.getElementById('grade').value;
+            const m = document.getElementById('note').value || "Interested in admission.";
+
+            const waNum = "919663321579"; // Your WhatsApp Number
+            const text = `🎓 *NEW ADMISSION ENQUIRY*%0A%0A*Name:* ${n}%0A*Phone:* ${p}%0A*Class:* ${g}%0A*Message:* ${m}`;
+
+            window.location.href = `https://wa.me/${waNum}?text=${text}`;
+        });
+    </script>
+
+</body>
+</html>
