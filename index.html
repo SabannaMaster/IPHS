@@ -11,6 +11,115 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
     <style>
+
+      /* CONTAINER STYLING */
+        .admission-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        .admission-item {
+            background: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        /* GOLDEN BADGE */
+        .gold-badge {
+            background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            color: #000;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 0 20px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* TICKER SECTION */
+        .admission-ticker {
+            flex-grow: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #f8fafc;
+            font-family: sans-serif;
+            font-size: 14px;
+        }
+
+        .admission-ticker span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker-move 20s linear infinite;
+        }
+
+        @keyframes ticker-move {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* BUTTON */
+        .apply-now {
+            background: #6366f1;
+            color: white !important;
+            text-decoration: none;
+            font-family: sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .apply-now:hover {
+            background: #4f46e5;
+            transform: scale(1.05);
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 600px) {
+            .admission-item {
+                flex-direction: column;
+                height: auto;
+                padding-bottom: 15px;
+                text-align: center;
+            }
+
+            .gold-badge {
+                width: 100%;
+                height: 40px;
+                margin-bottom: 10px;
+            }
+
+            .admission-ticker {
+                width: 100%;
+                margin-bottom: 15px;
+                font-size: 13px;
+            }
+
+            .apply-now {
+                width: 80%;
+                margin: 0 auto;
+            }
+        }
+
+      
+      
       .section,
       .staff-card,
       .principal-card {
@@ -659,6 +768,18 @@
       <a href="#gallery">📸 Gallery</a>
       <a href="https://maps.app.goo.gl/LbD3jTtJp2p1k49r8" target="_blank" rel="noopener noreferrer">📍 Location</a>
     </nav>
+
+    <div class="admission-container">
+    <div class="admission-item">
+        <div class="gold-badge">Admissions 2026-27</div>
+        
+        <div class="admission-ticker">
+            <span>Limited Seats Available for Class 1st to 10th • Entrance Exam on April 15th • Scholarships Available • Registration Closing Soon! • </span>
+        </div>
+
+        <a href="Enquiry.html" target="_blank" rel="noopener noreferrer" class="apply-now">APPLY NOW</a>
+    </div>
+</div>
 
     <div class="container">
       <div class="section" id="about">
