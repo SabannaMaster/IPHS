@@ -699,32 +699,123 @@
         box-shadow: 0 0 25px rgba(255, 0, 0, 1);
       }
 
-      #loader {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        background: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-      }
+      /* ===== IPHS PROFESSIONAL GLASS-SHIELD LOADER ===== */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #ffffff; /* Clean professional white */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-      .spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid #ccc;
-        border-top: 5px solid #004aad;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
+.loader-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-      @keyframes spin {
-        100% {
-          transform: rotate(360deg);
-        }
-      }
+/* The Central Logo Glass Disk */
+.logo-disk {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(0, 74, 173, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: diskPulse 3s ease-in-out infinite;
+}
 
+.logo-disk img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+}
+
+/* Professional Orbital Rings */
+.orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    animation: rotate 3s linear infinite;
+}
+
+.orbit-saffron {
+    width: 140px;
+    height: 140px;
+    border-top: 3px solid #FF9933;
+    animation-duration: 2s;
+}
+
+.orbit-green {
+    width: 170px;
+    height: 170px;
+    border-bottom: 3px solid #138808;
+    animation-duration: 4s;
+    animation-direction: reverse;
+}
+
+.orbit-blue {
+    width: 195px;
+    height: 195px;
+    border-left: 1px dashed #004aad;
+    opacity: 0.3;
+    animation-duration: 8s;
+}
+
+/* Animations */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes diskPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(0, 74, 173, 0.15); }
+    50% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(0, 74, 173, 0.25); }
+}
+
+/* Loading Text */
+.loader-text {
+    margin-top: 40px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.loader-text h2 {
+    color: #004aad;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.loader-text p {
+    color: #666;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .loader-container { transform: scale(0.8); }
+    .loader-text h2 { font-size: 14px; }
+    .loader-text p { font-size: 9px; }
+}
       @media (max-width: 600px) {
         nav {
           overflow-x: auto;
@@ -743,9 +834,21 @@
 
   <body>
     <div id="loader">
-      <div class="spinner"></div>
+    <div class="loader-container">
+        <div class="orbit orbit-saffron"></div>
+        <div class="orbit orbit-green"></div>
+        <div class="orbit orbit-blue"></div>
+        
+        <div class="logo-disk">
+            <img src="https://sabannamaster.github.io/IPHS/IPHSlogo%20(1).png" alt="IPHS Logo">
+        </div>
     </div>
-
+    
+    <div class="loader-text">
+        <h2>Indian Primary And High School</h2>
+        <p>Building Futures Since 1978</p>
+    </div>
+</div>
     <div class="hero">
       <div class="fade-in">
         <img
@@ -988,6 +1091,24 @@
           }
         });
       });
+
+
+      window.addEventListener("load", function() {
+        const loader = document.getElementById("loader");
+        
+        // Ensures the professional animation plays for exactly 3 seconds (3000ms)
+        setTimeout(() => {
+            loader.style.opacity = "0";
+            
+            // Remove the element from the flow after the fade animation finishes
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 800);
+            
+        }, 3000); 
+    });
+</script>
+      
     </script>
   </body>
 </html>
