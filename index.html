@@ -829,6 +829,123 @@
           padding: 6px 12px;
         }
       }
+
+      /* Below is the images css for scrolling from right to left before about us */
+      :root {
+            --anim-duration: 16s; /* Total cycle for 4 images */
+            --slide-count: 4;
+            --per-slide: 4s; /* 16 / 4 */
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+      .premium-container {
+       position: relative;
+       width: 95%;           /* Keeps it from touching the screen edges */
+       max-width: 900px;     /* Limits size on desktop */
+       height: 500px;
+       overflow: hidden;
+       border-radius: 30px;
+       background: #000;
+       box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    
+       /* ADD THESE TWO LINES TO CENTER IT */
+       margin-left: auto;
+       margin-right: auto;
+       display: block; 
+       }
+      
+      /* Animated Progress Bar */
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, #ffd700, #fff); /* Gold/White school colors */
+            z-index: 100;
+            width: 0%;
+            animation: progress var(--per-slide) linear infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.2) rotateY(15deg);
+            transition: none;
+            animation: stackFlip var(--anim-duration) infinite;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+        }
+
+        /* Premium 3D Animation */
+        @keyframes stackFlip {
+            0% { 
+                opacity: 0; 
+                visibility: visible; 
+                transform: scale(1.2) translateY(20px) rotateY(15deg); 
+            }
+            5%, 25% { 
+                opacity: 1; 
+                transform: scale(1) translateY(0) rotateY(0deg); 
+            }
+            30% { 
+                opacity: 0; 
+                transform: scale(0.9) translateY(-20px) rotateX(10deg); 
+            }
+            100% { opacity: 0; }
+        }
+
+        /* Content / Text Overlay */
+        .content {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            z-index: 10;
+            max-width: 80%;
+            transform: translateY(20px);
+            animation: textUp var(--anim-duration) infinite;
+        }
+
+        @keyframes textUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            5%, 25% { opacity: 1; transform: translateY(0); }
+            30%, 100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        .content h2 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .content p { font-size: 1.1rem; background: rgba(0,0,0,0.3); display: inline-block; padding: 5px 15px; border-radius: 5px; }
+
+        /* Staggered Timings */
+        .slide:nth-child(2) { animation-delay: 4s; }
+        .slide:nth-child(2) .content { animation-delay: 4s; }
+
+        .slide:nth-child(3) { animation-delay: 8s; }
+        .slide:nth-child(3) .content { animation-delay: 8s; }
+
+        .slide:nth-child(4) { animation-delay: 12s; }
+        .slide:nth-child(4) .content { animation-delay: 12s; }
+
+        /* Responsive Mobile Code */
+        @media (max-width: 768px) {
+            .premium-container { height: 350px; border-radius: 20px; }
+            .content { bottom: 20px; left: 20px; }
+            .content h2 { font-size: 1.5rem; }
+            .content p { font-size: 0.9rem; }
+        }
+        
     </style>
   </head>
 
@@ -883,6 +1000,44 @@
         <a href="Enquiry.html" target="_blank" rel="noopener noreferrer" class="apply-now">APPLY NOW</a>
     </div>
 </div>
+
+      <!-- This container refers to scrolling image from right to left -->
+    <div class="premium-container">
+    <div class="progress-bar"></div>
+
+    <div class="slide">
+        <img src="https://images.pexels.com/photos/6992/forest-trees-northwestisbest-exploress.jpg" alt="School">
+        <div class="content">
+            <h2>Modern Campus</h2>
+            <p>Infrastructure for the next generation.</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="https://images.pexels.com/photos/707344/pexels-photo-707344.jpeg" alt="Arts">
+        <div class="content">
+            <h2>Creative Arts</h2>
+            <p>Nurturing talent beyond textbooks.</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="https://images.pexels.com/photos/34382346/pexels-photo-34382346.jpeg" alt="Sports">
+        <div class="content">
+            <h2>Elite Sports</h2>
+            <p>Building leaders on and off the field.</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="https://images.pexels.com/photos/36928654/pexels-photo-36928654.jpeg" alt="Science">
+        <div class="content">
+            <h2>Science & Tech</h2>
+            <p>Advancing through innovation and research.</p>
+        </div>
+    </div>
+</div>
+    
 
     <div class="container">
       <div class="section" id="about">
