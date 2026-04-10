@@ -368,85 +368,86 @@
         margin-bottom: 30px;
       }
 
-      /* Triangle Container */
-      .triangle {
-        position: relative;
-        max-width: 650px;
-        height: 380px;
-        margin: auto;
-      }
+      /* --- NEW REPLACEMENT CODE --- */
 
-      /* Glass Cards */
-      .card {
-        position: absolute;
-        width: 160px; /* Slimmer for mobile compatibility */
-        padding: 15px;
-        border-radius: 20px;
-        text-align: center;
-        backdrop-filter: blur(12px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-        transition: 0.4s;
-      }
+/* Wrapper to align the dials side-by-side or stacked */
+.achievement-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
 
-      /* Positions */
-      .top {
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .left {
-        bottom: 0;
-        left: 0;
-      }
-      .right {
-        bottom: 0;
-        right: 0;
-      }
+/* The Circular Dial Body */
+.dial-card {
+  background: rgba(255, 255, 255, 0.9);
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border: 2px solid #e2e8f0;
+  transition: transform 0.3s ease;
+}
 
-      .number {
-        font-size: 28px;
-        font-weight: bold;
-        color: #00e6ff;
-      }
+/* Hover Effect */
+.dial-card:hover { 
+  transform: translateY(-5px); 
+}
 
-      .label {
-        margin-top: 8px;
-        font-size: 14px;
-      }
+/* The Professional Rotating Ring */
+.dial-card::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top: 3px solid var(--main-color); /* Uses your school's blue */
+  animation: rotateRing 4s linear infinite;
+}
 
-      /* SVG lines */
-      svg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-      }
+/* Animation Logic */
+@keyframes rotateRing { 
+  from { transform: rotate(0deg); } 
+  to { transform: rotate(360deg); } 
+}
 
-      line {
-        stroke: url(#grad);
-        stroke-width: 3;
-        stroke-dasharray: 6;
-        animation: move 3s linear infinite;
-      }
+/* Dial Text Styling */
+.dial-card .number { 
+  font-size: 32px; 
+  font-weight: 800; 
+  color: var(--main-color); 
+}
 
-      @keyframes move {
-        to {
-          stroke-dashoffset: -20;
-        }
-      }
+.dial-card .label { 
+  font-size: 11px; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  color: #64748b; 
+  margin-top: 5px; 
+}
 
-      .dot {
-        fill: #00e6ff;
-        filter: drop-shadow(0 0 6px #00e6ff);
-      }
-
-      .counter {
-        display: inline-block;
-      }
+/* Mobile Responsiveness for Dials */
+@media (max-width: 600px) {
+  .dial-card { 
+    width: 130px; 
+    height: 130px; 
+  }
+  .dial-card .number { 
+    font-size: 24px; 
+  }
+  .dial-card .label { 
+    font-size: 9px; 
+  }
+  .achievement-wrapper { 
+    gap: 15px; 
+  }
+}
 
       /* GALLERY */
 
@@ -829,8 +830,10 @@
           padding: 6px 12px;
         }
       }
-
-      /* Below is the images css for scrolling from right to left before about us */
+      
+      
+      
+      
       :root {
             --anim-duration: 16s; /* Total cycle for 4 images */
             --slide-count: 4;
@@ -946,6 +949,9 @@
             .content p { font-size: 0.9rem; }
         }
         
+        
+      
+      
     </style>
   </head>
 
@@ -1001,8 +1007,9 @@
     </div>
 </div>
 
-      <!-- This container refers to scrolling image from right to left -->
-    <div class="premium-container">
+
+        
+<div class="premium-container">
     <div class="progress-bar"></div>
 
     <div class="slide">
@@ -1037,7 +1044,7 @@
         </div>
     </div>
 </div>
-    
+        
 
     <div class="container">
       <div class="section" id="about">
@@ -1050,34 +1057,20 @@
 
         <section class="stats-section">
           <h2>Our Achievements</h2>
-          <div class="triangle">
-            <svg>
-              <defs>
-                <linearGradient id="grad">
-                  <stop offset="0%" stop-color="#00e6ff" />
-                  <stop offset="100%" stop-color="#0072ff" />
-                </linearGradient>
-              </defs>
-              <line x1="50%" y1="10%" x2="10%" y2="85%" />
-              <line x1="50%" y1="10%" x2="90%" y2="85%" />
-              <line x1="10%" y1="85%" x2="90%" y2="85%" />
-            </svg>
-
-            <div class="card top">
-              <div class="number counter" data-target="2010">0</div>
-              <div class="label">Established</div>
-            </div>
-            <div class="card left">
-              <div class="number counter" data-target="22">0</div>
-              +
-              <div class="label">Teachers</div>
-            </div>
-            <div class="card right">
-              <div class="number counter" data-target="1000">0</div>
-              +
-              <div class="label">Students</div>
-            </div>
-          </div>
+          <div class="achievement-wrapper">
+    <div class="dial-card">
+        <span class="number counter" data-target="1978">0</span>
+        <span class="label">Established</span>
+    </div>
+    <div class="dial-card">
+        <span class="number"><span class="counter" data-target="1000">0</span>+</span>
+        <span class="label">Students</span>
+    </div>
+    <div class="dial-card">
+        <span class="number"><span class="counter" data-target="22">0</span>+</span>
+        <span class="label">Expert Staff</span>
+    </div>
+</div>
         </section>
       </div>
 
@@ -1184,86 +1177,82 @@
     <footer>
       <p>© 2026 Indian Primary And High School</p>
     </footer>
-
-    <script>
-      const counters = document.querySelectorAll(".counter");
-      counters.forEach((counter) => {
-        let target = +counter.getAttribute("data-target");
-        let count = 0;
-        let update = () => {
-          let speed = target / 100;
-          count += speed;
-          if (count < target) {
-            counter.innerText = Math.floor(count);
-            requestAnimationFrame(update);
-          } else {
-            counter.innerText = target;
-          }
-        };
-        update();
-      });
-
-      const revealElements = document.querySelectorAll(
-        ".section, .staff-card, .principal-card"
-      );
-
-      const revealOnScroll = () => {
-        const triggerBottom = window.innerHeight * 0.85;
-
-        revealElements.forEach((el) => {
-          const boxTop = el.getBoundingClientRect().top;
-
-          if (boxTop < triggerBottom) {
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-          }
-        });
+<script>
+  // 1. Define the counter function but DON'T run it yet
+  const runCounters = () => {
+    const counters = document.querySelectorAll(".counter");
+    counters.forEach((counter) => {
+      let target = +counter.getAttribute("data-target");
+      let count = 0;
+      let update = () => {
+        let speed = target / 100;
+        count += speed;
+        if (count < target) {
+          counter.innerText = Math.floor(count);
+          requestAnimationFrame(update);
+        } else {
+          counter.innerText = target;
+        }
       };
-
-      window.addEventListener("scroll", revealOnScroll);
-
-      window.addEventListener("load", () => {
-        document.getElementById("loader").style.display = "none";
-      });
-
-      const sections = document.querySelectorAll("section, .section");
-      const navLinks = document.querySelectorAll("nav a");
-
-      window.addEventListener("scroll", () => {
-        let current = "";
-
-        sections.forEach((sec) => {
-          const sectionTop = sec.offsetTop - 100;
-          if (pageYOffset >= sectionTop) {
-            current = sec.getAttribute("id");
-          }
-        });
-
-        navLinks.forEach((a) => {
-          a.classList.remove("active");
-          if (a.getAttribute("href") === "#" + current) {
-            a.classList.add("active");
-          }
-        });
-      });
-
-
-      window.addEventListener("load", function() {
-        const loader = document.getElementById("loader");
-        
-        // Ensures the professional animation plays for exactly 3 seconds (3000ms)
-        setTimeout(() => {
-            loader.style.opacity = "0";
-            
-            // Remove the element from the flow after the fade animation finishes
-            setTimeout(() => {
-                loader.style.display = "none";
-            }, 800);
-            
-        }, 3000); 
+      update();
     });
-</script>
+  };
+
+  const revealElements = document.querySelectorAll(".section, .staff-card, .principal-card");
+
+  const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+    revealElements.forEach((el) => {
+      const boxTop = el.getBoundingClientRect().top;
+      if (boxTop < triggerBottom) {
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+      }
+    });
+  };
+
+  window.addEventListener("scroll", revealOnScroll);
+
+  // Navigation Active Link Logic
+  const sections = document.querySelectorAll("section, .section");
+  const navLinks = document.querySelectorAll("nav a");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach((sec) => {
+      const sectionTop = sec.offsetTop - 100;
+      if (pageYOffset >= sectionTop) {
+        current = sec.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((a) => {
+      a.classList.remove("active");
+      if (a.getAttribute("href") === "#" + current) {
+        a.classList.add("active");
+      }
+    });
+  });
+
+  // 2. LOADER LOGIC (The most important part)
+  window.addEventListener("load", function() {
+    const loader = document.getElementById("loader");
+    
+    // Wait 3 seconds for the loader
+    setTimeout(() => {
+      loader.style.opacity = "0";
       
-    </script>
+      // Wait for fade out animation to finish (800ms)
+      setTimeout(() => {
+        loader.style.display = "none";
+        
+        // NOW start the numbers and check scroll position
+        runCounters(); 
+        revealOnScroll();
+      }, 800);
+      
+    }, 3000); 
+  });
+</script>
   </body>
 </html>
