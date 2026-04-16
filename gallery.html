@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Gallery</title>
+
+<style>
+:root{
+  --bg:#f9fafb;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --primary:#2563eb;
+  --border:#e5e7eb;
+}
+
+*{box-sizing:border-box;font-family:system-ui;}
+
+body{
+  margin:0;
+  background:var(--bg);
+}
+
+/* HEADER */
+.header{
+  position:sticky;
+  top:0;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.home-btn{
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* SEARCH */
+.search{padding:16px 20px;}
+.search input{
+  width:100%;
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:6px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+  padding:0 20px 20px;
+}
+
+/* CARD */
+.card{
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  cursor:pointer;
+  background:#fff;
+}
+.card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+}
+.info{padding:10px;}
+.title{font-weight:600;font-size:14px;}
+.desc{font-size:12px;color:var(--muted);}
+
+/* VIEWER */
+.viewer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.viewer img{
+  width:min(900px,92%);
+  border-radius:8px;
+}
+
+/* BACK BUTTON */
+.back-btn{
+  position:absolute;
+  top:16px;
+  left:16px;
+  background:#ffffff20;
+  color:#fff;
+  border:1px solid #ffffff40;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* CONTROLS */
+.controls{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.controls button{
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* DETAILS BOTTOM SHEET */
+.details-sheet{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:-100%;
+  background:#fff;
+  border-top-left-radius:14px;
+  border-top-right-radius:14px;
+  padding:16px;
+  box-shadow:0 -10px 30px rgba(0,0,0,0.2);
+  transition:0.3s;
+  z-index:1000;
+}
+
+.details-sheet.active{
+  bottom:0;
+}
+
+.details-header{
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+.details-text{
+  font-size:14px;
+  color:var(--muted);
+}
+
+/* CLOSE AREA */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  display:none;
+  z-index:999;
+}
+
+.overlay.active{
+  display:block;
+}
+
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div>School Gallery</div>
+  <button class="home-btn" id="homeBtn" onclick="goHome()">Home</button>
+</div>
+
+<div class="search">
+  <input type="text" id="search" placeholder="Search..." oninput="render()">
+</div>
+
+<div class="grid" id="grid"></div>
+
+<!-- VIEWER -->
+<div class="viewer" id="viewer">
+  <button class="back-btn" onclick="closeViewer()">← Back</button>
+
+  <img id="img">
+
+  <div class="controls">
+    <button onclick="prev()">Prev</button>
+    <button onclick="download()">Download</button>
+    <button onclick="next()">Next</button>
+    <button onclick="share()">Share</button>
+    <button onclick="openDetails()">Details</button>
+  </div>
+</div>
+
+<!-- DETAILS SHEET -->
+<div class="details-sheet" id="detailsSheet">
+  <div class="details-header">Image Details</div>
+  <div class="details-text" id="detailsText"></div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeDetails()"></div>
+
+<script>
+
+let images = [
+  {
+    src:"https://picsum.photos/900/500?1",
+    title:"Annual Day",
+    desc:"Celebration",
+    details:"Annual Day celebration with cultural performances."
+  },
+  {
+    src:"https://picsum.photos/900/500?2",
+    title:"Sports Day",
+    desc:"Activities",
+    details:"Outdoor sports competitions and activities."
+  },
+  {
+    src:"https://picsum.photos/900/500?3",
+    title:"Dance Show",
+    desc:"Performance",
+    details:"Students performing dance on stage."
+  }
+];
+
+let current=0;
+let filtered=images;
+
+/* HOME */
+function goHome(){
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* RENDER */
+function render(){
+  let q=document.getElementById("search").value.toLowerCase();
+
+  filtered=images.filter(i =>
+    i.title.toLowerCase().includes(q) ||
+    i.desc.toLowerCase().includes(q)
+  );
+
+  let grid=document.getElementById("grid");
+  grid.innerHTML="";
+
+  filtered.forEach((img,i)=>{
+    grid.innerHTML+=`
+      <div class="card" onclick="openViewer(${i})">
+        <img src="${img.src}">
+        <div class="info">
+          <div class="title">${img.title}</div>
+          <div class="desc">${img.desc}</div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+/* VIEWER */
+function openViewer(i){
+  current=i;
+  document.getElementById("viewer").style.display="flex";
+  document.getElementById("homeBtn").style.display="none";
+  show();
+}
+
+function closeViewer(){
+  document.getElementById("viewer").style.display="none";
+  document.getElementById("homeBtn").style.display="block";
+}
+
+function show(){
+  document.getElementById("img").src=filtered[current].src;
+}
+
+/* NAV */
+function next(){
+  current=(current+1)%filtered.length;
+  show();
+}
+
+function prev(){
+  current=(current-1+filtered.length)%filtered.length;
+  show();
+}
+
+/* DOWNLOAD */
+function download(){
+  let a=document.createElement("a");
+  a.href=filtered[current].src;
+  a.download="image.jpg";
+  a.click();
+}
+
+/* SHARE */
+function share(){
+  let url=filtered[current].src;
+
+  if(navigator.share){
+    navigator.share({url});
+  }else{
+    window.open("https://wa.me/?text="+url);
+  }
+}
+
+/* DETAILS */
+function openDetails(){
+  document.getElementById("detailsSheet").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
+
+  document.getElementById("detailsText").innerText =
+    filtered[current].details || "No details added yet.";
+}
+
+function closeDetails(){
+  document.getElementById("detailsSheet").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+render();
+
+</script>
+
+</body>
+</html>
